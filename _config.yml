@@ -1,0 +1,18 @@
+# Site settings
+title: Kwarf's Blog
+description: My personal blog about programming, R/C, UAV, FPV and other geeky things.
+baseurl: ""
+url: "http://kwarf.github.io"
+
+full_name: Jimmy 'Kwarf' Bergström
+twitter_username: TheKwarf
+github_username: Kwarf
+
+paginate: 5
+
+# Build settings
+markdown: kramdown
+permalink: /:year/:month/:title/
+exclude: [vendor, Gemfile]
+sass:
+    style: compressed

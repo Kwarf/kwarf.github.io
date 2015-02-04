@@ -1,0 +1,269 @@
+/**
+* Site header
+*/
+.site-header {
+	border-bottom: 1px solid $post-border-color;
+	min-height: 56px;
+	background-color: $post-background;
+	margin-bottom: 0px;
+
+	a {
+		color: $text-color;
+	}
+}
+
+.site-title {
+	font-size: 26px;
+	line-height: 56px;
+	float: left;
+}
+
+.site-nav {
+	float: right;
+
+	.menu-icon {
+		display: none;
+	}
+
+	.page-link {
+		display: block;
+		padding: 0px 10px;
+		line-height: 56px;
+
+		// Gaps between nav items, but not on the first one
+		&:not(:first-child) {
+			margin-left: 20px;
+		}
+
+		&:hover {
+			background-color: #DDDDDD;
+		}
+	}
+
+	@include media-query($on-palm) {
+		position: absolute;
+		top: 9px;
+		right: 30px;
+		background-color: $background-color;
+		border: 1px solid $link-color;
+		border-radius: 5px;
+		text-align: right;
+
+		.menu-icon {
+			display: block;
+			float: right;
+			width: 36px;
+			height: 26px;
+			line-height: 0;
+			padding-top: 10px;
+			text-align: center;
+
+			> svg {
+				width: 18px;
+				height: 15px;
+
+				path {
+					fill: $link-color;
+				}
+			}
+		}
+
+		.trigger {
+			clear: both;
+			display: none;
+		}
+
+		&:hover .trigger {
+			display: block;
+			padding-bottom: 5px;
+		}
+
+		.page-link {
+			display: block;
+			padding: 5px 10px;
+			line-height: normal;
+		}
+	}
+}
+
+
+
+/**
+* Site footer
+*/
+.site-footer {
+	border-top: 1px solid $post-border-color;
+	padding: $spacing-unit 0;
+	background-color: $post-background;
+}
+
+.footer-heading {
+	font-size: 18px;
+	margin-bottom: $spacing-unit / 2;
+	text-align: center;
+}
+
+.contact-list,
+.social-media-list {
+	list-style: none;
+	margin-left: 0;
+}
+
+.footer-col-wrapper {
+	font-size: 15px;
+	color: $grey-color;
+	margin-left: -$spacing-unit / 2;
+	@extend %clearfix;
+}
+
+.footer-col {
+	float: left;
+	margin-bottom: $spacing-unit / 2;
+	padding-left: $spacing-unit / 2;
+}
+
+.footer-col-1 {
+	width: -webkit-calc(35% - (#{$spacing-unit} / 2));
+	width:         calc(35% - (#{$spacing-unit} / 2));
+}
+
+.footer-col-2 {
+	width: -webkit-calc(20% - (#{$spacing-unit} / 2));
+	width:         calc(20% - (#{$spacing-unit} / 2));
+	text-align: center;
+}
+
+.footer-col-3 {
+	width: -webkit-calc(45% - (#{$spacing-unit} / 2));
+	width:         calc(45% - (#{$spacing-unit} / 2));
+	text-align: right;
+}
+
+@include media-query($on-laptop) {
+	.footer-col-1,
+	.footer-col-2 {
+		width: -webkit-calc(50% - (#{$spacing-unit} / 2));
+		width:         calc(50% - (#{$spacing-unit} / 2));
+	}
+
+	.footer-col-3 {
+		width: -webkit-calc(100% - (#{$spacing-unit} / 2));
+		width:         calc(100% - (#{$spacing-unit} / 2));
+	}
+}
+
+@include media-query($on-palm) {
+	.footer-col {
+		float: none;
+		width: -webkit-calc(100% - (#{$spacing-unit} / 2));
+		width:         calc(100% - (#{$spacing-unit} / 2));
+		text-align: center;
+	}
+}
+
+
+
+/**
+* Page content
+*/
+.page-content {
+	padding: 20px 0;
+	background-color: $content-background-color;
+}
+
+.page-heading {
+	font-size: 20px;
+}
+
+.post-list {
+	margin-left: 0;
+	list-style: none;
+
+	> li {
+		background-color: $post-background;
+		border: 1px solid $post-border-color;
+		padding: 5px 15px;
+
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+
+		&.pagination {
+			text-align: center;
+		}
+	}
+}
+
+.post-meta {
+	font-size: $small-font-size;
+	color: $grey-color;
+	float: right;
+}
+
+.post-link {
+	display: block;
+	font-size: 24px;
+	float: left;
+}
+
+
+
+/**
+* Posts
+*/
+.post {
+	background-color: $post-background;
+	border: 1px solid $post-border-color;
+	padding: 5px 15px;
+}
+
+.post-header {
+}
+
+.post-title {
+	font-size: 24px;
+	letter-spacing: -1px;
+	float: left;
+
+	@include media-query($on-laptop) {
+		font-size: 20px;
+	}
+}
+
+.post-content {
+	clear: both;
+
+	h2 {
+		font-size: 20px;
+
+		@include media-query($on-laptop) {
+			font-size: 18px;
+		}
+	}
+
+	h3 {
+		font-size: 20px;
+		margin-left: 10px;
+
+		@include media-query($on-laptop) {
+			font-size: 18px;
+		}
+	}
+
+	h4 {
+		font-size: 20px;
+
+		@include media-query($on-laptop) {
+			font-size: 18px;
+		}
+	}
+
+	p {
+		margin: 10px;
+	}
+}
+
+.post-footer {
+	text-align: right;
+}
+
