@@ -17,7 +17,7 @@ layout: default
 			{{ post.content }}
 			</article>
 			<footer class="post-footer">
-				<a class="post-comments-link" href="{{ post.url | prepend: site.baseurl }}#disqus_thread">Comments</a>
+				<a class="post-comments-link" href="{{ post.url | prepend: site.baseurl }}#disqus_thread" data-disqus-identifier="{{ post.id }}">Comments</a>
 			</footer>
 		</li>
 		{% endfor %}
