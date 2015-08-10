@@ -9,6 +9,10 @@
 
 	a {
 		color: $text-color;
+		float: left;
+		@include media-query($on-laptop) {
+			float: inherit;
+		}
 	}
 }
 
