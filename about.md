@@ -83,3 +83,13 @@ computers. It's pretty much built from leftovers, except the disks.
 * 4GB RAM
 * 64GB SanDisk SSD
 * 2 x 4TB WD Red in software RAID1
+
+### Bedroom HTPC
+
+When I bought a new monitor to my desktop computer I decided to use one of the
+old ones for a small HTPC in my bedroom. I needed something passive so I went
+for the Raspberry Pi 2. You can read about the build [here](/2015/02/arch-and-kodi-on-the-raspberry-pi-2/).
+
+* Raspberry Pi 2
+* 8GB Class 10 MicroSD
+* D-Link DWA-127 802.11n USB NIC
