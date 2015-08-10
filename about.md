@@ -24,16 +24,18 @@ summer when the weather allows.
 ## About my computers
 
 I run [Arch Linux](http://archlinux.org) on all my computers, including a
-24/7/365 that I share with a friend as well as my computer at work. I've never
-had any major issues or breakages on any of my installations.
+24/7/365 server that I share with a friend as well as my computer at work. I've
+never had any major issues or breakages on any of my installations.
 
-I prefer the [i3](http://i3wm.org) window manager as I often open things side by
-side, and having as little unused/wasted space as possible is nice when I'm
-using my laptop. It also allowed me to switch from 2 x 24" monitors to a single
-27" without going mental.
+I prefer the [awesome](http://awesome.naquadah.org/) window manager as I often
+open things side by side, and having as little unused/wasted space as possible
+is nice when I'm using my laptop. It also allowed me to switch from 2 x 24"
+monitors to a single 27" without going mental. I used to run [i3](https://i3wm.org/)
+but I always found myself manually arranging the windows in the same way each
+time I started stuff and thought that it'd be nice to have the WM do that
+automatically so I switched to awesome.
 
 ### Desktop
-
 
 This is the only computer where I have a Windows 7 dual-boot setup (for
 gaming). Some of the parts have been moved along in multiple upgrades, and are
@@ -63,7 +65,7 @@ on multiple places online. I bought mine from [GGS-Data](http://www.ggsdata.se/)
 here in Sweden for 7825 SEK (around $1k depending on the exchange rate).
 
 The build quality isn't very high, but that is to be expected from such a cheap
-computer, and it doesn't bother me much.
+computer, and it doesn't bother me much, performance is more important for me.
 
 * Intel Core i7 4710MQ 2.5GHz (3.5GHz turbo)
 * Kingston HyperX 8GB 1600MHz
