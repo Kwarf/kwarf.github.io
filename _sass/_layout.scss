@@ -10,7 +10,7 @@
 	a {
 		color: $text-color;
 		float: left;
-		@include media-query($on-laptop) {
+		@include media-query($on-palm) {
 			float: inherit;
 		}
 	}
