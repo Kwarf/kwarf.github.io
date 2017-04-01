@@ -9,6 +9,22 @@ can't show any work related stuff that isn't open source) and what tools and
 languages I prefer to use when I get to pick them myself. I've listed everything
 chronologically from the most recent and back.
 
+# Ludum Dare 34 (December 2015)
+This is what we call a "simultaneous" turn based game, you and all enemies move
+all at once, every time you push a key. It was made by me and [Znurre](https://github.com/Znurre).
+
+You start out as a cube, your objective is to reach the flag on each level with
+one cube without being killed by worms. Your cubes can pick up different powers
+by rolling on different colored ground, and you have the ability to clone cubes,
+and controlling them all at once.
+
+As usual this game was written from scratch (no engine) using [SFML 2](https://www.sfml-dev.org/).
+
+__Binaries can be found [here](http://ludumdare.com/compo/ludum-dare-34/?action=preview&uid=7989)
+and the source is available on [GitHub](https://github.com/MemoryLeek/ld34).__
+
+{% include image.html url="/uploads/2017/04/kubble.png" %}
+
 # Ludum Dare 30 (August 2014)
 This is my best [Ludum Dare](http://ludumdare.com/compo/) entry so far, it was
 made by me and [Znurre](https://github.com/Znurre). It's called World² and it's
@@ -44,7 +60,7 @@ This was a massively over-ambitious game made by me,
 [Znurre](https://github.com/Znurre) and [b2](https://github.com/B2qa).
 It was supposed to be a futuristic dungeon crawler with pseudo-random generated
 levels from a fixed set of rooms. You would hit certain checkpoints or bosses
-after which you'd have to choose one of your items to upgrade, but this was 
+after which you'd have to choose one of your items to upgrade, but this was
 obviously way out of scope for us to achieve in a weekend.
 
 We ended up giving the player only one life (to sort of follow the _you only get
