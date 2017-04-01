@@ -5,10 +5,11 @@ permalink: /about/
 ---
 
 I live in Sweden, so if my English is weird from time to time it's because it's
-not my native language. And no, we don't have polar bears here.
+not my native language.
 
-I work as an embedded software developer using mostly C++ and C, targeting ARM
-and AVR.
+I currently (2016-) work as a C# developer. Before that I was working in
+embedded development (2010-2016), using mostly C++ and C, targeting ARM and AVR.
+So I have a somewhat mixed programming background.
 
 Most of my spare time is spent in front of my computer, programming, gaming, or
 _attempting_ to make music. I enter [Ludum Dare](http://ludumdare.com) now and
@@ -23,49 +24,37 @@ summer when the weather allows.
 
 ## About my computers
 
-I run [Arch Linux](http://archlinux.org) on all my computers, including a
-24/7/365 server that I share with a friend as well as my computer at work. I've
-never had any major issues or breakages on any of my installations.
+I run [Arch Linux](http://archlinux.org) on my main laptop, as well as a
+24/7/365 server that I share with a friend. I've never had any major issues or
+breakages on any of my installations.
 
-I prefer the [awesome](http://awesome.naquadah.org/) window manager as I often
-open things side by side, and having as little unused/wasted space as possible
-is nice when I'm using my laptop. It also allowed me to switch from 2 x 24"
-monitors to a single 27" without going mental. I used to run [i3](https://i3wm.org/)
-but I always found myself manually arranging the windows in the same way each
-time I started stuff and thought that it'd be nice to have the WM do that
-automatically so I switched to awesome.
+I'm currently running [KDE Plasma](https://www.kde.org/plasma-desktop). I
+recently switched from [i3](https://i3wm.org/), because I felt like I was
+spending too much time configuring and setting stuff up.
 
-### Desktop
+### Primary laptop
 
-This is the only computer where I have a Windows 7 dual-boot setup (for
-gaming). Some of the parts have been moved along in multiple upgrades, and are
-starting to feel pretty old (looking at the CPU and RAM). However it more than
-satisfies my needs.
+A ThinkPad T460p running [Arch Linux](http://archlinux.org) and
+[KDE Plasma](https://www.kde.org/plasma-desktop). This is the computer I
+primarily use for development and regular daily web-browsing.
 
-* ASRock Fatal1ty Z77 Professional-M
-* Intel Core i7 2600k @ 4.5GHz
-* Crucial BallistiX 8GB 1600MHz CL8
-* 2 x GTX Titan SLI
-* 512GB Samsung 840 Pro
-* BitFenix Phenom M
-* Asus ROG Swift PG278Q 144Hz G-SYNC monitor
-* Filco Majestouch TLK with blank caps
+I usually have it docked, using it as a desktop.
 
-{% include image.html url="/uploads/2015/02/IMG_0415.jpeg" desc="Very little space wasted" %}
+* Intel Core i7 6700HQ 2.6GHz (3.5GHz turbo)
+* NVIDIA GeForce 940MX 2GB
+* Samsung 32GB 2133MHz
+* 512GB Samsung PM871a
+* 14" 1440p IPS (matte)
+* Intel Wireless-AC 8260
 
-### Laptop
+### Secondary laptop
 
-I spent quite a bit of time looking for a suitable laptop with good performance
-for a reasonable price. I wanted a quad-core since I usually compile things
-quite often, and I also didn't want a dedicated GPU since Optimus on Linux
-scares me and I won't even be gaming on it.
-
-The desicion landed on a Clevo W650SZ which is a Chinese OEM laptop that is sold
-on multiple places online. I bought mine from [GGS-Data](http://www.ggsdata.se/)
-here in Sweden for 7825 SEK (around $1k depending on the exchange rate).
+A Clevo W650SZ on which I run Windows 10. I use this for any Windows-specific
+development, as well as for CAD drawings (using [Fusion 360](http://www.autodesk.com/products/fusion-360/overview)).
 
 The build quality isn't very high, but that is to be expected from such a cheap
-computer, and it doesn't bother me much, performance is more important for me.
+(around $900) computer, and it doesn't bother me much, performance is more
+important for me.
 
 * Intel Core i7 4710MQ 2.5GHz (3.5GHz turbo)
 * Kingston HyperX 8GB 1600MHz
@@ -73,14 +62,31 @@ computer, and it doesn't bother me much, performance is more important for me.
 * 15.6" 1080p IPS (matte)
 * Intel Wireless-AC 7260
 
+### Desktop
+
+This is my "gaming rig", running Windows 10. Some of the parts have been moved
+along in multiple upgrades, and are starting to feel pretty old (looking at the
+CPU and RAM). However it more than satisfies my needs.
+
+* ASRock Fatal1ty Z77 Professional-M
+* Intel Core i7 2600k @ 4.5GHz
+* Crucial BallistiX 8GB 1600MHz CL8
+* 2 x GTX Titan SLI
+* 512GB Samsung 840 Pro
+* BitFenix Phenom M
+* Dell UltraSharp U2515H monitor
+* Filco Majestouch TLK with blank caps
+
+{% include image.html url="/uploads/2015/02/IMG_0415.jpeg" desc="Very little space wasted" %}
+
 ### NAS / Home server
 
 This is where I store media and stuff that should be accessible from all my
 computers. It's pretty much built from leftovers, except the disks.
 
 * Asus P7P55D-E
-* Intel Core i5 660 (3.33GHz)
-* 4GB RAM
+* Intel Core i7 870 (2.93GHz)
+* 16GB RAM
 * 64GB SanDisk SSD
 * 2 x 4TB WD Red in software RAID1
 
