@@ -6,7 +6,7 @@
 
 
 // Our variables
-$base-font-family: Helvetica, Arial, sans-serif;
+$base-font-family: 'Roboto', sans-serif;
 $base-font-size:   16px;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.4;
@@ -14,12 +14,15 @@ $base-line-height: 1.4;
 $spacing-unit:     30px;
 
 $text-color:       #404040;
-$post-background:  #EEEEEE;
+$post-background:  #FFFFFF;
 $post-border-color: #BBBBBB;
 $background-color: $post-background;
-$content-background-color: #DDDDDD;
+$content-background-color: #F5F5F5;
 $link-color:       #6193CF;
 $link-color-visited: #2C72C7;
+
+$site-header-background: #607D8B;
+$site-header-text-color: #FFFFFF;
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
