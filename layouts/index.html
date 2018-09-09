@@ -1,7 +1,39 @@
 <!DOCTYPE html>
 <html>
 {{ partial "head.html" . }}
-<body>
-  {{ .Content }}
+
+<body class="landing">
+
+  <div class="content">
+    <div class="presentation">
+      <h1>Kwarf</h1>
+      <h2>Jimmy Bergström</h2>
+      <p>Programmer</p>
+      <p>C# / C++ / Rust</p>
+    </div>
+
+    <div>
+      <nav>
+        <ul>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <footer>
+    <a href="https://github.com/Kwarf">
+      <i class="fab fa-github-square"></i>
+      <p>GitHub</p>
+    </a>
+    <a href="https://twitter.com/TheKwarf">
+      <i class="fab fa-twitter-square"></i>
+      <p>Twitter</p>
+    </a>
+  </footer>
+
 </body>
+
 </html>
