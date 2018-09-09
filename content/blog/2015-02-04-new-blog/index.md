@@ -1,7 +1,8 @@
 ---
-layout: post
 title: "New blog"
 date: 2015-02-04 21:55:00
+aliases:
+    - /2015/02/new-blog/
 ---
 I used to host my own [WordPress](https://wordpress.com) blog, but since I hardly ever post anything it
 felt a bit overkill. Keeping it updated was also quite a pain, I hate running

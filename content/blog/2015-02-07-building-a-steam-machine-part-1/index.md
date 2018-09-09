@@ -1,7 +1,8 @@
 ---
-layout: post
 title: "Building a Steam Machine (Part 1)"
 date: 2015-02-07 03:36:00
+aliases:
+    - /2015/02/building-a-steam-machine-part-1/
 ---
 My HTPC was starting to feel a bit old
 ([Asus S1-AT5NM10E](http://www.asus.com/Barebone_PCs/S1AT5NM10E/) that I bought
@@ -36,11 +37,11 @@ Total cost for this was 2672 SEK (approx. $325 USD), obviously excluding the 360
 controller and the case I don't have yet. You can save a bit by going down in
 RAM size to 4GB, but Linux is good at utilizing RAM for cache so I chose 8GB.
 
-{% include image.html url="/uploads/2015/02/IMG_0469.jpeg" %}
+![Parts](IMG_0469.jpeg)
 
 There's not much to show here, just pop in the RAM and connect the cables.
 
-{% include image.html url="/uploads/2015/02/IMG_0475.jpeg" %}
+![Test assembly](IMG_0475.jpeg)
 
 ## Software installation
 
@@ -103,7 +104,7 @@ CPU and RAM usage. I changed the bandwidth limit to unlimited even though it
 says that it increases latency, I also set "Client options" to "Beautiful", but
 I'm not even sure what that does.
 
-{% include image.html url="/uploads/2015/02/witcher2.jpeg" %}
+![The Witcher 2](witcher2.jpeg)
 
 I had major issues when I had SLI enabled, the Steam client crashed when I
 started the game, and I was stuck on a black screen. So I disabled SLI for this
@@ -121,14 +122,14 @@ end is where I pretty much just run around all the time, making it peak at about
 90 Mbit/s. The red spikes you see in the upload is caused by me pressing F8 to
 save a screenshot and stats dump to the host.
 
-{% include image.html url="/uploads/2015/02/network.png" %}
+![Network usage](network.png)
 
 The next image shows the CPU usage % of each core, I graphed this just in case one
 of the cores were close to maxed out. Luckily this wasn't the case, and it seems
 to be distributing things over all 4 cores. You can see where I save
 screenshots/stats in this graph as well.
 
-{% include image.html url="/uploads/2015/02/cores.png" desc="Low load on all 4 cores" %}
+![CPU usage](cores.png)
 
 This last graph shows the CPU load average, the RAM usage in % and the
 temperature of the hottest core in degrees Celsius. The temperature is really
@@ -137,12 +138,12 @@ when I put it inside a case. RAM usage is so ridiculously low that I regret
 logging it in % instead of MB, I think it's around 300-400 MB (excluding buffers
 and cache).
 
-{% include image.html url="/uploads/2015/02/perf.png" desc="The J1900 handles it like a breeze" %}
+![Overall load](perf.png)
 
 I have uploaded the script that I wrote to generate these graphs to GitHub, for
 those of you who might be interested, it's available
 [here](https://gist.github.com/Kwarf/8dd248ccfdb04a0f6801). You can also
-download my rrd database from [here](/uploads/2015/02/log.rrd), if you for some
+download my rrd database from [here](log.rrd), if you for some
 reason would like to graph something else from it.
 
 Stay tuned for the coming update where I'll be mounting everything in a case,

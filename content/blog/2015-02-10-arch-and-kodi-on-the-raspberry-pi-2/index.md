@@ -1,7 +1,8 @@
 ---
-layout: post
 title: "Arch and Kodi on the Raspberry Pi 2"
 date: 2015-02-10 19:35:00
+aliases:
+    - /2015/02/arch-and-kodi-on-the-raspberry-pi-2/
 ---
 I usually watch TV shows on my laptop in bed before I fall asleep. Some nights I
 manage to fall asleep before the end of the show, without turning off my laptop,
@@ -9,7 +10,7 @@ which means that it gets pretty hot due to the air intake being blocked. So with
 the launch of the Raspberry Pi 2 I've decided to make a more permanent solution,
 placing one of my old 24" monitors on my nightstand and run Kodi on the RPi.
 
-{% include image.html url="/uploads/2015/02/IMG_0477.jpeg" %}
+![Parts](IMG_0477.jpeg)
 
 As always the distro of choice is Arch Linux. This installation guide will
 assume that you're running Linux, if you're on any other O/S you're on your own.
@@ -41,7 +42,7 @@ default mesa-libgl. After everything is downloaded and installed you should
 enable Kodi to start at boot with `systemctl enable kodi` and then start it with
 `systemctl start kodi`. After a few seconds of loading Kodi should start.
 
-{% include image.html url="/uploads/2015/02/kodi.png" %}
+![Kodi UI](kodi.png)
 
 ## Benchmarks
 
@@ -65,19 +66,19 @@ with no lag or stuttering at all, so time for some graphs!
 I used a [modified version](https://gist.github.com/Kwarf/e2f7fcb0feb713fde5be)
 of the script I made for my [last blog post](/2015/02/building-a-steam-machine-part-1/).
 The sample movie is 60 seconds long and I logged data for 90 s to be able to see
-idle load as well. The rrd file is [available here](/uploads/2015/02/pi.rrd).
+idle load as well. The rrd file is [available here](pi.rrd).
 
-{% include image.html url="/uploads/2015/02/pinetwork.png" desc="Network traffic just for verification" %}
+![Network usage](pinetwork.png)
 
-{% include image.html url="/uploads/2015/02/picores.png" desc="CPU usage, individual cores" %}
+![CPU usage](picores.png)
 
-{% include image.html url="/uploads/2015/02/piperf.png" %}
+![Overall Load](piperf.png)
 
 I also found [this test](http://www.phoronix.com/scan.php?page=news_item&px=MTc0NjQ)
 on Phoronix, so I installed phoronix-test-suite so I could run that same
 benchmark and compare my results to the old single-core RPi.
 
-{% include image.html url="/uploads/2015/02/graph.png" desc="A big improvement over the old RPi" %}
+![Phoronix test suite results](graph.png)
 
 You can see the full benchmark results over at
 [http://openbenchmarking.org/result/1502103-KWAR-140722031](http://openbenchmarking.org/result/1502103-KWAR-140722031).
