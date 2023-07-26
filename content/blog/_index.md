@@ -1,3 +1,4 @@
 ---
+_build:
+  render: false
 ---
-Foo

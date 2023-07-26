@@ -1,99 +1,215 @@
-html, body {
-  height: 100%;
-  margin: 0;
+@import 'reset';
+
+:root {
+  --font-system: system-ui, sans-serif;
+  --font-geometric-humanist: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+  --color-text: #FFF;
+  --color-background: #222;
+  --color-link: #BBF;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-text: #000;
+    --color-background: #FFF;
+    --color-link: #00B;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  img[src$='#dark-invert'] {
+    filter: invert(0.865);
+  }
 }
 
 body {
+  font-family: var(--font-system);
   background-image: linear-gradient(135deg, #09203f, #537895);
-  font-family: 'Open Sans', sans-serif;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  &.landing {
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.3em;
+}
+
+em {
+  font-style: italic;
+}
+
+ul {
+  list-style-type: disc;
+  padding-inline-start: 2em;
+}
+
+section {
+  margin: 0.5rem 0;
+}
+
+footer {
+  margin: 0.5em 0;
+  line-height: 1.3em;
+  font-size: 0.8em;
+  color: #FFF;
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  a {
     color: #FFF;
-    font-family: 'Julius Sans One', sans-serif;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+  }
+}
+
+nav.root {
+  margin: 1rem 0;
+  min-width: Min(100vw, 800px);
+
+  a {
+    color: #FFF;
+    text-decoration: none;
+  }
+}
+
+@media screen and (max-width: calc(800px + 3em)) {
+  nav.root {
+    min-width: calc(100vw - 3em);
+  }
+}
+
+.post {
+  min-width: Min(100vw, 800px);
+  max-width: 800px;
+  box-sizing: border-box;
+  padding: 1em 1.5em;
+  background-color: var(--color-background);
+  color: var(--color-text);
+
+  h2 {
+    margin-left: -0.5em;
+  }
+
+  p {
+    line-height: 1.4;
+    margin: 1em 0;
+  }
+
+  a {
+    color: var(--color-link);
+  }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
   }
 }
 
 .landing {
-  .content {
-    flex: 1;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  color: #FFF;
+}
+
+.inline-svg {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+
+  >svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.presentation {
+  font-family: var(--font-geometric-humanist);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  >h1 {
+    font-size: 5em;
   }
 
-  .presentation {
+  >h1,
+  h2 {
+    letter-spacing: 0.07em;
+    text-shadow: 0px 2px 2px #111;
+  }
+
+  >p {
+    margin: 0.2em;
+
+    &:first-of-type {
+      margin-top: 0.5em;
+    }
+  }
+}
+
+.socials {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.3em;
+
+  >a {
+    color: inherit;
+    opacity: 0.8;
+    text-decoration: none;
+    text-align: center;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.landing {
+  &:first-child {
     padding-top: 10%;
-  
-    > h1, h2 {
-      margin: 0;
-      text-shadow: 0px 2px 2px #111;
-    }
-  
-    > h1 {
-      font-size: 5rem;
-      letter-spacing: 0.4rem;
-    }
-  
-    > p {
-      margin: 8px;
-    }
-  }  
+  }
 
   nav {
     display: table;
     margin: 0 auto;
-  
+
     ul {
       margin-top: 3rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-  
+
       list-style: none;
       padding: 0;
-  
+
       a {
         color: #FFF;
         text-decoration: none;
         font-size: 1.5rem;
-  
+
         &:hover {
           text-shadow: 0px 0px 1px #EEE;
         }
       }
-  
+
       li {
         flex: 1;
         padding: 0.5rem 1rem;
       }
-    }
-  }
-
-  footer {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
-  
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  
-    .fab {
-      font-size: 3rem;
-    }
-  
-    a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      margin: 0 8px;
-  
-      &:hover {
-        color: #FFF;
-      }
-    }
-  
-    p {
-      margin: 0;
     }
   }
 }

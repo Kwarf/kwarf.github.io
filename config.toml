@@ -1,6 +1,0 @@
-baseURL = "http://kwarf.com/"
-languageCode = "en-us"
-title = "Kwarf"
-
-[permalinks]
-  blog = "/blog/:year/:month/:title/"

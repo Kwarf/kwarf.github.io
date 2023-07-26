@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  {{ if .Title }}
+  <title>{{ .Title }} - {{ .Site.Title }}</title>
+  {{ else }}
+  <title>{{ .Site.Title }}</title>
+  {{ end }}
+
+
+  {{ $style := resources.Get "sass/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $style.Permalink }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+</head>
+
+<body>
+  {{ block "body" . }}
+  {{ end }}
+</body>
+
+<footer>
+  {{ block "footer" . }}
+  {{ end }}
+</footer>
+
+</html>

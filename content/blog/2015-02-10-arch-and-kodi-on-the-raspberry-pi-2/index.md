@@ -1,8 +1,6 @@
 ---
 title: "Arch and Kodi on the Raspberry Pi 2"
 date: 2015-02-10 19:35:00
-aliases:
-    - /2015/02/arch-and-kodi-on-the-raspberry-pi-2/
 ---
 I usually watch TV shows on my laptop in bed before I fall asleep. Some nights I
 manage to fall asleep before the end of the show, without turning off my laptop,
@@ -36,7 +34,7 @@ a bit in from the edge) you should disable it by uncommenting
 _need to_ change `gpu_mem=64` to `gpu_mem=256`. After doing this we should
 reboot with `systemctl reboot`.
 
-The next step is to install Kodi, specifically the Raspberry Pi version with 
+The next step is to install Kodi, specifically the Raspberry Pi version with
 `pacman -S kodi-rbp`, when prompted about libgl provider just hit enter for the
 default mesa-libgl. After everything is downloaded and installed you should
 enable Kodi to start at boot with `systemctl enable kodi` and then start it with
@@ -68,11 +66,11 @@ of the script I made for my [last blog post](/2015/02/building-a-steam-machine-p
 The sample movie is 60 seconds long and I logged data for 90 s to be able to see
 idle load as well. The rrd file is [available here](pi.rrd).
 
-![Network usage](pinetwork.png)
+![Network usage](pinetwork.png#dark-invert)
 
-![CPU usage](picores.png)
+![CPU usage](picores.png#dark-invert)
 
-![Overall Load](piperf.png)
+![Overall Load](piperf.png#dark-invert)
 
 I also found [this test](http://www.phoronix.com/scan.php?page=news_item&px=MTc0NjQ)
 on Phoronix, so I installed phoronix-test-suite so I could run that same

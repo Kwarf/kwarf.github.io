@@ -2,8 +2,6 @@
 title: "A look at the Spektrum satellite protocol"
 date: 2013-08-28 21:27:57
 categories: RC
-aliases:
-    - /2013/08/a-look-at-the-spektrum-satellite-protocol/
 ---
 I'm planning on adding Spektrum satellite support to the [APM](http://ardupilot.com/) (specifically the PPM encoder on the APM2.5) so the first step in the process is to take a look at the actual communication.
 

@@ -1,8 +1,6 @@
 ---
 title: "Building a Steam Machine (Part 2)"
 date: 2015-02-17 21:30:00
-aliases:
-    - /2015/02/building-a-steam-machine-part-2/
 ---
 In an [earlier post](/2015/02/building-a-steam-machine-part-1/) I built,
 installed and benchmarked a steam machine. The only thing that was missing was

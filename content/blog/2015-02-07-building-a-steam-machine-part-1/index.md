@@ -1,8 +1,6 @@
 ---
 title: "Building a Steam Machine (Part 1)"
 date: 2015-02-07 03:36:00
-aliases:
-    - /2015/02/building-a-steam-machine-part-1/
 ---
 My HTPC was starting to feel a bit old
 ([Asus S1-AT5NM10E](http://www.asus.com/Barebone_PCs/S1AT5NM10E/) that I bought
@@ -122,14 +120,14 @@ end is where I pretty much just run around all the time, making it peak at about
 90 Mbit/s. The red spikes you see in the upload is caused by me pressing F8 to
 save a screenshot and stats dump to the host.
 
-![Network usage](network.png)
+![Network usage](network.png#dark-invert)
 
 The next image shows the CPU usage % of each core, I graphed this just in case one
 of the cores were close to maxed out. Luckily this wasn't the case, and it seems
 to be distributing things over all 4 cores. You can see where I save
 screenshots/stats in this graph as well.
 
-![CPU usage](cores.png)
+![CPU usage](cores.png#dark-invert)
 
 This last graph shows the CPU load average, the RAM usage in % and the
 temperature of the hottest core in degrees Celsius. The temperature is really
@@ -138,7 +136,7 @@ when I put it inside a case. RAM usage is so ridiculously low that I regret
 logging it in % instead of MB, I think it's around 300-400 MB (excluding buffers
 and cache).
 
-![Overall load](perf.png)
+![Overall load](perf.png#dark-invert)
 
 I have uploaded the script that I wrote to generate these graphs to GitHub, for
 those of you who might be interested, it's available

@@ -2,8 +2,6 @@
 title: "RS2205 4S propeller tests"
 date: 2016-06-03 19:30:00
 categories: RC
-aliases:
-    - /2016/06/RS2205-4S-propeller-tests/
 ---
 I'm building a new race quadcopter since I want more performance than my current
 one (3S with 1804 motors). I decided on [EMAX RS2205](http://www.hobbyking.com/hobbyking/store/uh_viewitem.asp?idproduct=99497)
@@ -36,9 +34,9 @@ a [Gemfan 5046BN](http://www.hobbyking.com/hobbyking/store/uh_viewitem.asp?idpro
 and a brutal [Gemfan 5550BN](http://www.hobbyking.com/hobbyking/store/uh_viewitem.asp?idproduct=96602).
 Note that the 5550 will not fit the EMAX 200 frame since it's too large at 5,5".
 
-![Thrust graph](thrust.png)
+![Thrust graph](thrust.png#dark-invert)
 
-![Current graph](current.png)
+![Current graph](current.png#dark-invert)
 
 I obviously wouldn't recommend the 5550BN when using a 20A ESC since it pulls over
 40A at full throttle, even the 5046BN is a bit high at 33,8A, but the 5045BN
