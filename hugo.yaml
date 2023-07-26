@@ -1,0 +1,11 @@
+baseURL: "http://kwarf.com/"
+languageCode: "en-us"
+title: "Kwarf"
+
+permalinks:
+  page:
+    blog: "/:year/:month/:slug/"
+
+disableKinds:
+  - taxonomy
+  - term
