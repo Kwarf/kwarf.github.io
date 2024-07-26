@@ -1,23 +1,24 @@
-@import 'reset';
+@import "reset";
 
 :root {
   --font-system: system-ui, sans-serif;
-  --font-geometric-humanist: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
-  --color-text: #FFF;
+  --font-geometric-humanist: Avenir, Montserrat, Corbel, "URW Gothic",
+    source-sans-pro, sans-serif;
+  --color-text: #fff;
   --color-background: #222;
-  --color-link: #BBF;
+  --color-link: #bbf;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --color-text: #000;
-    --color-background: #FFF;
-    --color-link: #00B;
+    --color-background: #fff;
+    --color-link: #00b;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  img[src$='#dark-invert'] {
+  img[src$="#dark-invert"] {
     filter: invert(0.865);
   }
 }
@@ -62,14 +63,14 @@ footer {
   margin: 0.5em 0;
   line-height: 1.3em;
   font-size: 0.8em;
-  color: #FFF;
+  color: #fff;
   opacity: 0.8;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   a {
-    color: #FFF;
+    color: #fff;
   }
 }
 
@@ -78,7 +79,7 @@ nav.root {
   min-width: Min(100vw, 800px);
 
   a {
-    color: #FFF;
+    color: #fff;
     text-decoration: none;
   }
 }
@@ -122,15 +123,17 @@ nav.root {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  color: #FFF;
+  gap: 0.5em;
+  color: #fff;
 }
 
 .inline-svg {
   display: inline-block;
+  font-size: 2rem;
   height: 1em;
   width: 1em;
 
-  >svg {
+  > svg {
     width: 100%;
     height: 100%;
   }
@@ -142,17 +145,17 @@ nav.root {
   display: flex;
   flex-direction: column;
 
-  >h1 {
+  > h1 {
     font-size: 5em;
   }
 
-  >h1,
+  > h1,
   h2 {
     letter-spacing: 0.07em;
     text-shadow: 0px 2px 2px #111;
   }
 
-  >p {
+  > p {
     margin: 0.2em;
 
     &:first-of-type {
@@ -162,16 +165,21 @@ nav.root {
 }
 
 .socials {
-  font-size: 2rem;
+  font-size: 0.6rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 0.3em;
+  gap: 2em;
+  margin: 0 2em;
 
-  >a {
+  > a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
     color: inherit;
-    opacity: 0.8;
+    opacity: 0.4;
     text-decoration: none;
-    text-align: center;
 
     &:hover {
       opacity: 1;
@@ -198,12 +206,12 @@ nav.root {
       padding: 0;
 
       a {
-        color: #FFF;
+        color: #fff;
         text-decoration: none;
         font-size: 1.5rem;
 
         &:hover {
-          text-shadow: 0px 0px 1px #EEE;
+          text-shadow: 0px 0px 1px #eee;
         }
       }
 
