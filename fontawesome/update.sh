@@ -9,6 +9,7 @@ brands/linkedin \
 brands/facebook \
 brands/strava \
 brands/lastfm \
+solid/rss \
 "
 
 url=https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs

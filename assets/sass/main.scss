@@ -156,14 +156,6 @@ nav.root {
   padding: 1em;
 }
 
-.landing {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  color: #fff;
-}
-
 .inline-svg {
   display: inline-block;
   font-size: 2rem;
@@ -216,6 +208,7 @@ nav.root {
     gap: 0.5em;
     color: inherit;
     opacity: 0.4;
+    transition: opacity 0.25s;
     text-decoration: none;
 
     &:hover {
@@ -225,36 +218,46 @@ nav.root {
 }
 
 .landing {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  color: #fff;
+
   &:first-child {
     padding-top: 10%;
   }
 
   nav {
-    display: table;
-    margin: 0 auto;
-
-    ul {
-      margin-top: 3rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-
-      list-style: none;
-      padding: 0;
+    h2 {
+      margin: 1rem 0 0.3rem 0;
+      opacity: 0.8;
 
       a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.5rem;
-
-        &:hover {
-          text-shadow: 0px 0px 1px #eee;
-        }
+        display: inline;
+        margin-right: 0.2em;
       }
 
-      li {
-        flex: 1;
-        padding: 0.5rem 1rem;
+      .inline-svg {
+        font-size: 0.8em;
+      }
+    }
+
+    a {
+      display: block;
+      color: inherit;
+      opacity: 0.4;
+      transition: opacity 0.25s;
+      text-decoration: none;
+      padding: 0.3em 0;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      time {
+        font-size: 0.8em;
+        opacity: 0.8;
       }
     }
   }
