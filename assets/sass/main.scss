@@ -4,9 +4,12 @@
   --font-system: system-ui, sans-serif;
   --font-geometric-humanist: Avenir, Montserrat, Corbel, "URW Gothic",
     source-sans-pro, sans-serif;
+  --font-monospace: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo,
+    Consolas, "DejaVu Sans Mono", monospace;
   --color-text: #fff;
   --color-background: #222;
   --color-link: #bbf;
+  --color-inline-code-background: #303446;
 }
 
 @media (prefers-color-scheme: light) {
@@ -14,13 +17,18 @@
     --color-text: #000;
     --color-background: #fff;
     --color-link: #00b;
+    --color-inline-code-background: #eff1f5;
   }
+
+  @import "catppuccin-latte";
 }
 
 @media (prefers-color-scheme: dark) {
   img[src$="#dark-invert"] {
     filter: invert(0.865);
   }
+
+  @import "catppuccin-frappe";
 }
 
 body {
@@ -36,6 +44,7 @@ body {
 
 h1 {
   font-size: 2em;
+  margin-bottom: 0.1em;
 }
 
 h2 {
@@ -74,6 +83,25 @@ footer {
   }
 }
 
+code {
+  font-family: var(--font-monospace);
+  font-size: 0.8em;
+}
+
+code:not(:has(*)) {
+  background-color: var(--color-inline-code-background);
+  padding: 0.3em;
+}
+
+video {
+  display: block;
+  margin: auto;
+}
+
+.highlight > pre {
+  overflow: auto;
+}
+
 nav.root {
   margin: 1rem 0;
   min-width: Min(100vw, 800px);
@@ -99,11 +127,16 @@ nav.root {
   color: var(--color-text);
 
   h2 {
+    margin-top: 1em;
     margin-left: -0.5em;
   }
 
+  h3 {
+    margin-top: 1em;
+  }
+
   p {
-    line-height: 1.4;
+    line-height: 1.5;
     margin: 1em 0;
   }
 
@@ -117,6 +150,10 @@ nav.root {
     margin-right: auto;
     max-width: 100%;
   }
+}
+
+.highlight > pre {
+  padding: 1em;
 }
 
 .landing {

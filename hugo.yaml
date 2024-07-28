@@ -9,3 +9,7 @@ permalinks:
 disableKinds:
   - taxonomy
   - term
+
+markup:
+  highlight:
+    noClasses: false

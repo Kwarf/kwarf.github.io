@@ -1,4 +1,4 @@
 ---
-_build:
-  render: false
+outputs:
+  - rss
 ---
