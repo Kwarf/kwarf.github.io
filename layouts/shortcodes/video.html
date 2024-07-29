@@ -1,1 +1,3 @@
-<video controls><source src="{{ .Get "src" }}" type="video/mp4" /></video>
+<video controls {{ with .Get "poster" }}poster="{{ . }}"{{ end }}>
+  <source src="{{ .Get "src" }}" type="video/mp4" />
+</video>

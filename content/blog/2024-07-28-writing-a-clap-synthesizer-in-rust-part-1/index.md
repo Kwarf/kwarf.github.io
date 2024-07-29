@@ -461,7 +461,7 @@ Now let's make a new release build and load it up in the DAW like we did
 earlier. Plop out some notes to make a simple tune (keep in mind that it should
 be monophonic) and hit play, and voila!
 
-{{< video src="daw.mp4" >}}
+{{< video poster="daw.jpeg" src="daw.mp4" >}}
 
 You can probably hear that we have clicks whenever a note ends, this is because
 we stop the waveform immediately, regardless of where we are. Ideally we should
