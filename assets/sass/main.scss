@@ -199,7 +199,7 @@ nav.root {
   flex-wrap: wrap;
   justify-content: center;
   gap: 2em;
-  margin: 0 2em;
+  margin: 0 2rem;
 
   > a {
     display: flex;
@@ -229,6 +229,8 @@ nav.root {
   }
 
   nav {
+    margin: 0 2rem;
+
     h2 {
       margin: 1rem 0 0.3rem 0;
       opacity: 0.8;
