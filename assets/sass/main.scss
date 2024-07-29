@@ -86,6 +86,12 @@ footer {
 code {
   font-family: var(--font-monospace);
   font-size: 0.8em;
+
+  // Fixes iOS font sizing anomaly, see https://github.com/adityatelange/hugo-PaperMod/issues/828#issuecomment-1171994855
+  text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 code:not(:has(*)) {
@@ -119,8 +125,7 @@ nav.root {
 }
 
 .post {
-  min-width: Min(100vw, 800px);
-  max-width: 800px;
+  width: Min(100vw, 800px);
   box-sizing: border-box;
   padding: 1em 1.5em;
   background-color: var(--color-background);
