@@ -39,14 +39,14 @@
 
   <nav class="post-list">
     <h2>
-      <a href="/blog/index.xml">{{ partial "fontawesome.html" "rss" }}</a>
+      <a href="/blog/index.xml" title="RSS Feed">{{ partial "fontawesome.html" "rss" }}</a>
       Blog posts
     </h2>
     <ol>
       {{ range .Site.RegularPages.ByDate.Reverse }}
       <li>
         <a href="{{ .Permalink }}">
-        <h4>{{ .Title }}</h4>
+        <h3>{{ .Title }}</h3>
         <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
           {{ .Date | time.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}
         </time>
