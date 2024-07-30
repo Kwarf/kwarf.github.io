@@ -8,8 +8,15 @@
 
   {{ if .Title }}
   <title>{{ .Title }} - {{ .Site.Title }}</title>
+  <meta property="og:title" content="{{ .Title }}" />
   {{ else }}
   <title>{{ .Site.Title }}</title>
+  {{ end }}
+  {{ if .Summary }}
+  <meta property="og:description" content="{{ .Summary }}" />
+  {{ end }}
+  {{ if .Param "image" }}
+  <meta property="og:image" content="{{ .RelPermalink }}{{ .Param "image" }}" />
   {{ end }}
 
 

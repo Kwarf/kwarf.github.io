@@ -481,3 +481,7 @@ will probably introduce a GUI with at least one tuneable parameter.
 To get some sort of notification when that's posted you can follow me on
 Mastodon at [@kwarf@fosstodon.org](https://fosstodon.org/@kwarf) or subscribe to
 the [RSS Feed](/blog/index.xml) if you're old-school cool like that.
+
+_**Update:**_ Part 2 is
+[now available here](/2024/07/writing-a-clap-synthesizer-in-rust-part-2/), and
+~spoiler, it's not about GUI~.
