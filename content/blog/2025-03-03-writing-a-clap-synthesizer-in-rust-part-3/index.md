@@ -2,6 +2,8 @@
 title: "Writing a CLAP synthesizer in Rust (Part 3)"
 date: 2025-03-03T00:00:00+01:00
 categories: Programming
+params:
+  image: "egui.png"
 ---
 
 It's been quite some time now since I published
