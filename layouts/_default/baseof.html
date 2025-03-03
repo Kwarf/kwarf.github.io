@@ -21,7 +21,7 @@
   {{ end }}
 
 
-  {{ $style := resources.Get "sass/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  {{ $style := resources.Get "sass/main.scss" | css.Sass | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $style.Permalink }}">
   <link rel="canonical" href="{{ .Permalink }}">
 </head>
