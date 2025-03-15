@@ -3,21 +3,21 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="google-site-verification" content="_CKeqv4XaK5JUFhSt4r2widR-ieufVg8WCtq8-yVHPI" />
+  <meta name="google-site-verification" content="_CKeqv4XaK5JUFhSt4r2widR-ieufVg8WCtq8-yVHPI">
 
   {{ if .Title }}
   <title>{{ .Title }} - {{ .Site.Title }}</title>
-  <meta property="og:title" content="{{ .Title }}" />
+  <meta property="og:title" content="{{ .Title }}">
   {{ else }}
   <title>{{ .Site.Title }}</title>
   {{ end }}
   {{ if .Summary }}
-  <meta property="og:description" content="{{ .Summary }}" />
+  <meta property="og:description" content="{{ .Summary }}">
   {{ end }}
   {{ if .Param "image" }}
-  <meta property="og:image" content="{{ .RelPermalink }}{{ .Param "image" }}" />
+  <meta property="og:image" content="{{ .RelPermalink }}{{ .Param "image" }}">
   {{ end }}
 
 
@@ -26,14 +26,14 @@
   <link rel="canonical" href="{{ .Permalink }}">
 </head>
 
-<body>
+<body class="{{ .Kind }}">
   {{ block "body" . }}
   {{ end }}
-</body>
 
-<footer>
-  {{ block "footer" . }}
-  {{ end }}
-</footer>
+  <footer>
+    {{ block "footer" . }}
+    {{ end }}
+  </footer>
+</body>
 
 </html>
