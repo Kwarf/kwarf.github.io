@@ -1,6 +1,7 @@
 ---
 title: "Writing a CLAP synthesizer in Rust (Part 3)"
 date: 2025-03-03T00:00:00+01:00
+lastmod: 2025-09-27T17:10:00+02:00
 categories: Programming
 params:
   image: "egui.png"
@@ -85,8 +86,8 @@ gives us a window handle. Instead I opted for
 [egui-baseview](https://github.com/BillyDM/egui-baseview).
 
 ```sh
-cargo add --git https://github.com/RustAudio/baseview.git --rev 9a0b42c09d712777b2edb4c5e0cb6baf21e988f0 baseview
-cargo add --git https://github.com/BillyDM/egui-baseview.git
+cargo add --git https://github.com/RustAudio/baseview.git --rev 3724a00c970a9cd10a3494fa3c37bca66d631bb7 baseview
+cargo add --git https://codeberg.org/BillyDM/egui-baseview.git
 cargo add raw-window-handle@0.5.2
 ```
 
@@ -139,16 +140,14 @@ impl CrabHowlerGui {
             settings,
             GraphicsConfig::default(),
             state.envelope.clone(),
-            |_egui_ctx: &Context, _queue: &mut Queue, _state: &mut Arc<RwLock<Envelope>>| {},
-            |egui_ctx: &Context, _queue: &mut Queue, state: &mut Arc<RwLock<Envelope>>| {
-                let mut envelope = state.write().unwrap();
-
+            |_egui_ctx: &Context, _queue: &mut Queue, _state: &mut Arc<Envelope>| {},
+            |egui_ctx: &Context, _queue: &mut Queue, state: &mut Arc<Envelope>| {
                 egui::CentralPanel::default().show(egui_ctx, |ui| {
                     ui.heading("Crab Howler");
-                    ui.add(Slider::new(&mut envelope.attack, 0.0..=1.0).text("Attack"));
-                    ui.add(Slider::new(&mut envelope.decay, 0.0..=1.0).text("Decay"));
-                    ui.add(Slider::new(&mut envelope.sustain, 0.0..=1.0).text("Sustain"));
-                    ui.add(Slider::new(&mut envelope.release, 0.0..=1.0).text("Release"));
+                    Self::slider(ui, &state.attack, "Attack");
+                    Self::slider(ui, &state.decay, "Decay");
+                    Self::slider(ui, &state.sustain, "Sustain");
+                    Self::slider(ui, &state.release, "Release");
                 });
             },
         ));
@@ -160,6 +159,16 @@ impl CrabHowlerGui {
         if let Some(handle) = self.handle.as_mut() {
             handle.close();
             self.handle = None;
+        }
+    }
+
+    fn slider(ui: &mut egui::Ui, property: &AtomicF32, name: impl Into<egui::WidgetText>) {
+        let mut value = property.load(Ordering::Relaxed);
+        if ui
+            .add(Slider::new(&mut value, 0.0..=1.0).text(name))
+            .changed()
+        {
+            property.store(value, Ordering::Relaxed);
         }
     }
 }
@@ -267,7 +276,7 @@ We will also need to wrap our `envelope` in an `Arc` like I mentioned earler.
 
 ```rs
 pub struct CrabHowlerShared {
-    envelope: Arc<RwLock<Envelope>>,
+    envelope: Arc<Envelope>,
 }
 ```
 
@@ -281,8 +290,12 @@ It may not be fancy, but it's drawn entirely by the plug itself.
 
 ### Getting the code
 
-As always the code is available by browsing the `part-3` tag over at
-[github.com/Kwarf/crabhowler](https://github.com/Kwarf/crabhowler/tree/part-3).
+As always the code is available by browsing the `part-3-r2` tag over at
+[github.com/Kwarf/crabhowler](https://github.com/Kwarf/crabhowler/tree/part-3-r2).
+
+> [!NOTE]
+> This now (as of 2025-09-27) links to a new tag, revision 2, because some minor
+> changes were required after fixing an [issue with part 2](https://github.com/Kwarf/crabhowler/issues/2).
 
 ## Conclusion
 
