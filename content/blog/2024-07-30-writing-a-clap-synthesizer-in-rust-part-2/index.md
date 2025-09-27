@@ -2,6 +2,7 @@
 title: "Writing a CLAP synthesizer in Rust (Part 2)"
 summary: "The second part in a series where I learn audio synthesis by creating a CLAP plugin in Rust."
 date: 2024-07-30T06:00:00+02:00
+lastmod: 2025-09-27T17:00:00+02:00
 categories: Programming
 params:
   image: "parameters.png"
@@ -37,27 +38,47 @@ made by the user are saved and restored properly, and this is done with `state`.
 cargo add --features params,state clack-extensions
 ```
 
+We also need the [atomic_float](https://crates.io/crates/atomic_float) crate for
+reasons that will be explained later in the post.
+
+```sh
+cargo add atomic_float
+```
+
 Let's start by creating a new file called `envelope.rs` so we don't end up with
 too much of a mess. To start with we will just create a struct for the envelope
 parameters and an implementation of the `Default` trait, since that will
 simplify things in a bit. The default values here are just guesses, and will
-likely be changed when we actually get sound produced by them.
+likely be changed when we actually get sound produced by them. I will also
+write an implementation of `Clone` as `AtomicF32` does not implement that,
+preventing us from just deriving it.
 
 ```rs
 pub struct Envelope {
-    pub attack: f32,
-    pub decay: f32,
-    pub sustain: f32,
-    pub release: f32,
+    pub attack: AtomicF32,
+    pub decay: AtomicF32,
+    pub sustain: AtomicF32,
+    pub release: AtomicF32,
+}
+
+impl Clone for Envelope {
+    fn clone(&self) -> Self {
+        Self {
+            attack: AtomicF32::new(self.attack.load(Ordering::Relaxed)),
+            decay: AtomicF32::new(self.decay.load(Ordering::Relaxed)),
+            sustain: AtomicF32::new(self.sustain.load(Ordering::Relaxed)),
+            release: AtomicF32::new(self.release.load(Ordering::Relaxed)),
+        }
+    }
 }
 
 impl Default for Envelope {
     fn default() -> Self {
         Self {
-            attack: 0.01,
-            decay: 0.1,
-            sustain: 0.8,
-            release: 0.1,
+            attack: AtomicF32::new(0.01),
+            decay: AtomicF32::new(0.1),
+            sustain: AtomicF32::new(0.8),
+            release: AtomicF32::new(0.1),
         }
     }
 }
@@ -116,7 +137,7 @@ fn get_info(&mut self, param_index: u32, info: &mut ParamInfoWriter) {
             module: b"",
             min_value: 0.0,
             max_value: 1.0,
-            default_value: default as f64,
+            default_value: default.load(Ordering::Relaxed) as f64,
         });
     }
 }
@@ -132,14 +153,24 @@ let's change that.
 ```rs
 #[derive(Default)]
 pub struct CrabHowlerShared {
-    envelope: RwLock<Envelope>,
+    envelope: Envelope,
 }
 ```
 
-Note that we wrap it inside of an `RwLock`, this is because we need to be able
-to perform mutable writes to it from different threads that are only given
-immutable `&`-references to the shared state. It will all make sense further
-down, hopefully.
+> [!NOTE]
+> The `Envelope` used to be held in an `RwLock` here, and all its values were
+> `f32`, until [CrushedPixel](https://github.com/CrushedPixel) raised an
+> [issue](https://github.com/Kwarf/crabhowler/issues/2) pointing out that it's
+> not real-time safe. If a write lock is held by the main thread it could block
+> the audio thread, and that could cause audio glitches, or in the worst case
+> the thread could be killed by the OS, depending on platform.
+>
+> He proposed two different solutions, one that would use lock-free queues and
+> another that just uses atomic floats. I decided on the latter to still keep
+> this post as simple as possible since it's intended as an introduction. If you
+> are writing a more complicated plugin I do encourage you to look into queues.
+>
+> This change/update was done on 2025-09-27.
 
 Because of our earlier implementation of `Default` for the `Envelope` type we
 can just derive that trait here, which allows a very simple change in the plugin
@@ -161,10 +192,10 @@ for `get_value`.
 fn get_value(&mut self, param_id: ClapId) -> Option<f64> {
     let envelope = self.shared.envelope.read().ok()?;
     match param_id.into() {
-        0 => Some(envelope.attack as f64),
-        1 => Some(envelope.decay as f64),
-        2 => Some(envelope.sustain as f64),
-        3 => Some(envelope.release as f64),
+        0 => Some(envelope.attack.load(Ordering::Relaxed) as f64),
+        1 => Some(envelope.decay.load(Ordering::Relaxed) as f64),
+        2 => Some(envelope.sustain.load(Ordering::Relaxed) as f64),
+        3 => Some(envelope.release.load(Ordering::Relaxed) as f64),
         _ => None,
     }
 }
@@ -215,9 +246,6 @@ fn text_to_value(&mut self, param_id: ClapId, text: &CStr) -> Option<f64> {
 We've finally reached the last function in this trait, `flush`, which is what
 the host (DAW) will call with a set of parameter changes that we should perform.
 
-This is where we have to get that mutable access to the envelope that I talked
-about earlier, and where the `RwLock` really comes into play.
-
 ```rs
 fn flush(
     &mut self,
@@ -226,11 +254,7 @@ fn flush(
 ) {
     for event in input_parameter_changes {
         if let Some(CoreEventSpace::ParamValue(event)) = event.as_core_event() {
-            self.shared
-                .envelope
-                .write()
-                .expect("Failed to acquire parameter write lock")
-                .handle_event(event);
+            self.shared.envelope.handle_event(event);
         }
     }
 }
@@ -243,10 +267,10 @@ function to the `Envelope` to take the event and actually set the values.
 impl Envelope {
     pub fn handle_event(&mut self, event: &ParamValueEvent) {
         match event.param_id().map(|x| x.into()) {
-            Some(0) => self.attack = event.value() as f32,
-            Some(1) => self.decay = event.value() as f32,
-            Some(2) => self.sustain = event.value() as f32,
-            Some(3) => self.release = event.value() as f32,
+            Some(0) => self.attack.store(event.value() as f32, Ordering::Relaxed),
+            Some(1) => self.decay.store(event.value() as f32, Ordering::Relaxed),
+            Some(2) => self.sustain.store(event.value() as f32, Ordering::Relaxed),
+            Some(3) => self.release.store(event.value() as f32, Ordering::Relaxed),
             _ => {}
         }
     }
@@ -274,11 +298,7 @@ impl<'a> PluginAudioProcessorParams for CrabHowlerAudioProcessor<'a> {
     ) {
         for event in input_parameter_changes {
             if let Some(CoreEventSpace::ParamValue(event)) = event.as_core_event() {
-                self.shared
-                    .envelope
-                    .write()
-                    .expect("Failed to acquire parameter write lock")
-                    .handle_event(event);
+                self.shared.envelope.handle_event(event);
             }
         }
     }
@@ -296,12 +316,9 @@ before.
     match event.as_core_event() {
         Some(CoreEventSpace::NoteOn(event)) => self.osc.handle_note_on(event),
         Some(CoreEventSpace::NoteOff(event)) => self.osc.handle_note_off(event),
-        Some(CoreEventSpace::ParamValue(event)) => self
-            .shared
-            .envelope
-            .write()
-            .expect("Failed to acquire parameter write lock")
-            .handle_event(event),
+        Some(CoreEventSpace::ParamValue(event)) => {
+            self.shared.envelope.handle_event(event)
+        }
         _ => {}
     }
 ...
@@ -336,29 +353,33 @@ handling the entire struct as one.
 ```rs
 impl<'a> PluginStateImpl for CrabHowlerMainThread<'a> {
     fn save(&mut self, output: &mut OutputStream) -> Result<(), PluginError> {
-        let envelope = self.shared.envelope.read().or(Err(PluginError::Message(
-            "Failed to acquire parameter read lock",
-        )))?;
-        output.write_all(&envelope.attack.to_le_bytes())?;
-        output.write_all(&envelope.decay.to_le_bytes())?;
-        output.write_all(&envelope.sustain.to_le_bytes())?;
-        output.write_all(&envelope.release.to_le_bytes())?;
+        let envelope = &self.shared.envelope;
+        output.write_all(&envelope.attack.load(Ordering::Relaxed).to_le_bytes())?;
+        output.write_all(&envelope.decay.load(Ordering::Relaxed).to_le_bytes())?;
+        output.write_all(&envelope.sustain.load(Ordering::Relaxed).to_le_bytes())?;
+        output.write_all(&envelope.release.load(Ordering::Relaxed).to_le_bytes())?;
         Ok(())
     }
 
     fn load(&mut self, input: &mut InputStream) -> Result<(), PluginError> {
-        let mut envelope = self.shared.envelope.write().or(Err(PluginError::Message(
-            "Failed to acquire parameter write lock",
-        )))?;
+        let envelope = &self.shared.envelope;
         let mut buf = [0; 4];
         input.read_exact(&mut buf)?;
-        envelope.attack = f32::from_le_bytes(buf);
+        envelope
+            .attack
+            .store(f32::from_le_bytes(buf), Ordering::Relaxed);
         input.read_exact(&mut buf)?;
-        envelope.decay = f32::from_le_bytes(buf);
+        envelope
+            .decay
+            .store(f32::from_le_bytes(buf), Ordering::Relaxed);
         input.read_exact(&mut buf)?;
-        envelope.sustain = f32::from_le_bytes(buf);
+        envelope
+            .sustain
+            .store(f32::from_le_bytes(buf), Ordering::Relaxed);
         input.read_exact(&mut buf)?;
-        envelope.release = f32::from_le_bytes(buf);
+        envelope
+            .release
+            .store(f32::from_le_bytes(buf), Ordering::Relaxed);
         Ok(())
     }
 }
@@ -437,7 +458,7 @@ impl ADSR {
     pub fn process(&mut self, sample_rate: f32) -> f32 {
         match self.state {
             ADSRState::Attack(sample) => {
-                let attack_samples = self.envelope.attack * sample_rate;
+                let attack_samples = self.envelope.attack.load(Ordering::Relaxed) * sample_rate;
                 self.state = if sample >= attack_samples {
                     ADSRState::Decay(0.0)
                 } else {
@@ -446,24 +467,25 @@ impl ADSR {
                 sample / attack_samples
             }
             ADSRState::Decay(sample) => {
-                let decay_samples = self.envelope.decay * sample_rate;
+                let decay_samples = self.envelope.decay.load(Ordering::Relaxed) * sample_rate;
                 self.state = if sample >= decay_samples {
                     ADSRState::Sustain
                 } else {
                     ADSRState::Decay(sample + 1.0)
                 };
-                1.0 - (1.0 - self.envelope.sustain) * (sample / decay_samples)
+                1.0 - (1.0 - self.envelope.sustain.load(Ordering::Relaxed))
+                    * (sample / decay_samples)
             }
-            ADSRState::Sustain => self.envelope.sustain,
+            ADSRState::Sustain => self.envelope.sustain.load(Ordering::Relaxed),
             ADSRState::Release(sample) => {
-                let release_samples = self.envelope.release * sample_rate;
+                let release_samples = self.envelope.release.load(Ordering::Relaxed) * sample_rate;
                 self.state = ADSRState::Release(sample + 1.0);
                 self.state = if sample >= release_samples {
                     ADSRState::Ended
                 } else {
                     ADSRState::Release(sample + 1.0)
                 };
-                self.envelope.sustain * (1.0 - sample / release_samples)
+                self.envelope.sustain.load(Ordering::Relaxed) * (1.0 - sample / release_samples)
             }
             ADSRState::Ended => 0.0,
         }
@@ -552,10 +574,7 @@ in `lib.rs` to pass it in from there.
 ```rs
 ...
     Some(CoreEventSpace::NoteOn(event)) => {
-        let envelope = self.shared.envelope.read().or(Err(
-            PluginError::Message("Failed to acquire parameter read lock"),
-        ))?;
-        self.osc.handle_note_on(&envelope, event)
+        self.osc.handle_note_on(&self.shared.envelope, event)
     }
 ...
 ```
@@ -642,7 +661,12 @@ improvement!
 ### Getting the code
 
 Everything we've made up until this point can be accessed by browsing the
-`part-2` tag over at [github.com/Kwarf/crabhowler](https://github.com/Kwarf/crabhowler/tree/part-2).
+`part-2-r2` tag over at [github.com/Kwarf/crabhowler](https://github.com/Kwarf/crabhowler/tree/part-2-r2).
+
+> [!NOTE]
+> If you want to see the diff between the first revision and the updated one
+> where I removed the `RwLock` use you can check it out
+> [here](https://github.com/Kwarf/crabhowler/compare/part-2...part-2-r2).
 
 ## What's next?
 
