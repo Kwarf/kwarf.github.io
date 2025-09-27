@@ -9,10 +9,11 @@ brands/linkedin \
 brands/facebook \
 brands/strava \
 brands/lastfm \
+solid/circle-info \
 solid/rss \
 "
 
-url=https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs
+url=https://raw.githubusercontent.com/FortAwesome/Font-Awesome/7.x/svgs
 for icon in $icons; do
   curl --fail-with-body -O "${url}/${icon}.svg"
 done

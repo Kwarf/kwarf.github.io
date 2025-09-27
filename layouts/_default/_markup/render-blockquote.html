@@ -1,0 +1,5 @@
+<blockquote{{ with .AlertType }} class="{{ . }}"{{ end }}>
+  {{ if eq .Type "alert" }}
+  <strong>{{ partial "fontawesome.html" "circle-info" }} {{ .AlertType | title }}</strong>
+  {{ end }} {{ .Text }}
+</blockquote>

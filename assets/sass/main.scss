@@ -10,6 +10,7 @@
   --color-background: #191922;
   --color-link: #bbf;
   --color-inline-code-background: #303446;
+  --color-blockquote-info: #7287fd;
 }
 
 @media (prefers-color-scheme: light) {
@@ -50,7 +51,8 @@ body {
   }
 }
 
-h1, .wordmark {
+h1,
+.wordmark {
   font-size: 2em;
   margin-bottom: 0.1em;
 }
@@ -183,6 +185,34 @@ nav.root {
     margin-left: auto;
     margin-right: auto;
     max-width: 100%;
+  }
+
+  blockquote {
+    margin: 1em 0;
+    background: var(--color-inline-code-background);
+
+    strong {
+      display: block;
+      padding: 1em;
+
+      .inline-svg {
+        font-size: 1em;
+        margin-right: 0.2em;
+        vertical-align: text-bottom;
+      }
+    }
+
+    p {
+      margin: 1em;
+    }
+
+    &.note {
+      border: 1px solid var(--color-blockquote-info);
+
+      strong {
+        background-color: var(--color-blockquote-info);
+      }
+    }
   }
 }
 
