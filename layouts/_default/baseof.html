@@ -27,7 +27,7 @@
 
   {{ if eq hugo.Environment "production" }}
   {{ $goatcounter := resources.Get "js/count.v5.js" | resources.Fingerprint }}
-  <script data-goatcounter="https://kwarf.goatcounter.com/count"
+  <script data-goatcounter="https://analytics.kwarf.com/count"
     async src="{{ $goatcounter.Permalink }}"
     integrity="{{ $goatcounter.Data.Integrity }}"></script>
   {{ end }}
