@@ -24,6 +24,13 @@
   {{ $style := resources.Get "sass/main.scss" | css.Sass | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $style.Permalink }}">
   <link rel="canonical" href="{{ .Permalink }}">
+
+  {{ if eq hugo.Environment "production" }}
+  <script data-goatcounter="https://kwarf.goatcounter.com/count"
+    async src="//gc.zgo.at/count.v5.js"
+    crossorigin="anonymous"
+    integrity="sha384-atnOLvQb9t+jTSipvd75X2yginT4PjVbqDdlJAmxMm+wYElFmeR6EmLP5bYeoRVQ"></script>
+  {{ end }}
 </head>
 
 <body class="{{ .Kind }}">
