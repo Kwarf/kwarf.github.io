@@ -26,10 +26,10 @@
   <link rel="canonical" href="{{ .Permalink }}">
 
   {{ if eq hugo.Environment "production" }}
+  {{ $goatcounter := resources.Get "js/count.v5.js" | resources.Fingerprint }}
   <script data-goatcounter="https://kwarf.goatcounter.com/count"
-    async src="//gc.zgo.at/count.v5.js"
-    crossorigin="anonymous"
-    integrity="sha384-atnOLvQb9t+jTSipvd75X2yginT4PjVbqDdlJAmxMm+wYElFmeR6EmLP5bYeoRVQ"></script>
+    async src="{{ $goatcounter.Permalink }}"
+    integrity="{{ $goatcounter.Data.Integrity }}"></script>
   {{ end }}
 </head>
 
